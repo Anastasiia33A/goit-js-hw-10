@@ -33,6 +33,7 @@ if (!searchQuery) {
                 ? countryMarkup(data[0])
                 : countriesMarkup(data);
         })
+    
         .catch(() => {
             Notify.failure('Oops, there is no country with that name');
         });

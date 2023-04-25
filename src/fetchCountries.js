@@ -1,6 +1,6 @@
 export function fetchCountries(country) {
     const options = new URLSearchParams({
-        fields: 'name, capital, population, flags, languages',
+        fields: 'name,capital,population,flags,languages',
     });
     const url = `https://restcountries.com/v3.1/name/${country}?${options}`;
 
@@ -8,6 +8,6 @@ export function fetchCountries(country) {
         if (!responce.ok) {
             throw new Error();
         }
-        return response.json();
+        return responce.json();
     });
 }
