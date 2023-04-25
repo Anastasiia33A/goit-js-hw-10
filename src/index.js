@@ -23,18 +23,19 @@ if (!searchQuery) {
     }
 
     fetchCountries(searchQuery)
-        .then(data => {
-            if (data.length > 10) {
-                Notify.info('Too many matches found. Please enter a more specific name.');
-                refs.listCountry.innerHTML = '';
-                return;
-            }
-            refs.listCountry.innerHTML = data.length === 1
-                ? countryMarkup(data[0])
-                : countriesMarkup(data);
-        })
-    
-        .catch(() => {
-            Notify.failure('Oops, there is no country with that name');
-        });
+        .then(checkCountries)
+        .catch(onError);
 }
+function checkCountries(country) {
+    if (country.length > 10) {
+        Notify.info("Too many matches found. Please enter a more specific name.");
+        listCountry.innerHTML = '';
+        return;
+    } 
+    if (country.length === 1) {
+        return countryMarkup(data[0])
+    }
+}
+function onError() {
+     Notify.failure("Oops, there is no country with that name")
+ }
